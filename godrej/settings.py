@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.herokuapp.com'
     'godrej-yb1q.onrender.com',
+    '*',
 ]
 
 
