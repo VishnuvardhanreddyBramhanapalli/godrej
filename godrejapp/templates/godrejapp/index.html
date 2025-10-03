@@ -1,0 +1,586 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{
+            width: 100%;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        .nav-bar{
+            height: 80px;
+            background-color: rgb(0, 0, 0);
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            display: flex;
+            justify-content:left;
+            align-items: center;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 60px;
+        }
+        .navbar-menu {
+            position: relative;
+        }
+        .navbar-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-list li {
+            margin: 0 20px;
+        }
+        .navbar-list li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.2s;
+        }
+        .navbar-list li a:hover {
+            color: #ff0000;
+        }
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 32px;
+            color: #fff;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .contact{
+            width: 40px !important;
+            height: 40px;
+            background-color: rgba(255, 0, 0, 0.74);
+        }
+        .banner{
+            height:500px;
+            background-image: url("{% static 'godrejapp/images/godrej-plots-doddaballapur-banner-48061.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .banner-details{
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0,0.4);
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 0;
+        }
+        .banner-heading{
+            color: rgb(255, 255, 255);
+            padding:0;
+            margin: 0;
+            border: 0;
+        }
+        h4{
+            margin-bottom: 5px;
+        }
+        h3{
+            padding-top: 0;
+            margin-top: 0;
+            border-top: 0;
+            margin-bottom: 5px;
+        }
+        .dimentions{
+            color: white;
+        }
+        .sqfeet{
+            margin-top: 5px;
+        }
+        .brochure{
+            margin-top: 10px;
+            width: 160px;
+            height: 40px;
+            background-color: rgba(255, 0, 0, 0.637);
+            border-radius: 10px;
+            color: white;
+        }
+        .brochure-heading{
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            font-size: 26px;
+            cursor: pointer;
+        }
+        .popup-content input[type="text"],
+        .popup-content input[type="tel"] {
+            width: 90%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .popup-content button[type="submit"] {
+            margin-top: 10px;
+            width: 95%;
+            padding: 10px;
+            background-color: #ff0000cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .contacticons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .contacticons a svg {
+            vertical-align: middle;
+        }
+        .about{
+            padding: 0;
+            margin: 0;
+            border: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            background-color: #ffffff;
+            height: 210px;
+        }
+        .about-heading{
+            padding: 0;
+            padding-top: 10px;
+            margin: 0;
+            border: 0;
+        }
+        .about-content{
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            max-width: 1400px;
+            font-size: 20px;
+        }
+        .highlights{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            color: rgb(0, 0, 0);
+            height: 370px;
+            background-color: #ccc;
+        }
+        li{
+            padding: 0;
+            border: 0;
+            margin: 0;
+            font-size: 20px;
+        }
+        .visit{
+            margin-top: 10px;
+            width: 160px;
+            height: 40px;
+            background-color: rgba(255, 0, 0, 0.745);
+            border-radius: 10px;
+            color: white;
+        }
+        .gallery-content{
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 600px;
+            border-radius: 10px;
+        }
+        .gallery-item {
+            position: relative;
+            min-width: 100%;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            pointer-events: none; /* Allows clicking through to div */
+            border-radius: 20px;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            display: block;
+        }
+        .location{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding-bottom: 20px;
+            background-color: #ccc;
+        }
+        .footer {
+            background: #111;
+            color: #fff;
+            padding: 30px 0 18px 0;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        .disclaimer {
+            margin-top: 18px;
+            margin-bottom: 2px;
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 0.02em;
+        }
+        .disclaimer-content-box {
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        .disclaimer-content-left {
+            text-align: center;
+            font-size: 1.05rem;
+            margin: 0 auto 18px auto;
+            padding-left: 36px;
+            max-width: 100%px;
+            color: #fff;
+        }
+
+        .disclaimer-content-center {
+            text-align: center;
+            font-size: 1.08rem;
+            font-weight: bold;
+            color: #ffee81;
+        }
+
+        .disclaimer-content-center a {
+            color: #4a86e8;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        @media (max-width: 900px) {
+            .navbar-list {
+        /* Hides menu by default on mobile screens */
+                display: none;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: #222;
+                flex-direction: column;
+                width: 200px;
+                border-radius: 0 0 10px 10px;
+                box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+                z-index: 999;
+                padding-bottom: 20px;
+            }
+            .navbar-list.open {
+                display: flex; /* menu appears when hamburger toggled */
+                align-items: center;
+                justify-content: center;
+            }
+            .navbar-toggle {
+                display: block;
+            }
+            .nav-bar {
+                position: relative;
+            }
+            .about{
+                padding-top: 80px;
+                padding-bottom: 120px;
+            }
+            .about-content{
+                max-width: 90vw;
+            }
+            .highlights {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background-color: #ccc;
+                min-height: 500px; /* Adjust as needed for content */
+                text-align: center;
+                padding: 30px 0 30px 0;
+            }
+
+            .highlights-heading {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .highlights li, .highlights p {
+                text-align:left;
+                margin-bottom: 18px;
+                font-size: 20px;
+                list-style: none;
+                padding: 3px;
+                margin: 0;
+                border: 0;
+                max-width: 90vw;
+                
+            }
+            .highlights ul {
+                margin: 0;
+                text-align: left;
+                width: 90vw;
+            }
+            .highlights li {
+                list-style: disc outside;
+                font-size: 20px;
+                margin-bottom: 16px;
+                text-align: left;
+            }
+            .gallery-item{
+                width: 90vw !important;
+            }
+            .location img{
+                height: 170px !important;      /* or choose a lower value */
+                width: 90vw !important;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+            .disclaimer-content-box{
+                width: 90vw !important;
+            }
+        }
+        @media (max-width: 450px), (max-width: 700px) and (max-height: 400px),(max-width: 800px) and (orientation: portrait) {
+            .about {
+                margin-top: 54px; /* Extra space for tall/narrow/fold devices */
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="nav-bar" id="home">
+        <div class="logo"><img src="{% static 'godrejapp/images/godrej-logo.png' %}" alt=""></div>
+        <nav class="navbar-menu">
+            <button class="navbar-toggle" aria-label="Menu">&#9776;</button>
+            <ul class="navbar-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="javascript:void(0);" class="contact-btn popup-contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="banner">
+        <div class="banner-details">
+            <h1 class="banner-heading">Godrej Doddaballapur</h1>
+            <h4 style="color: white;">Upcoming Plotted development</h4>
+            <h3 style="color: red">Tentatively price : 4500 Rs . Per.sft</h3>
+            <h3 class="dimentions">Dimentions</h3>
+            <h4 class="sqfeet" style="color: white;">1200 Sft | 1500 Sft | 1800 Sft | 2000 Sft | 2400 Sft</h4>
+            <button class="brochure" id="downloadBrochureBtn"><h4 class="brochure-heading">Download Brochure</h4></button>
+        </div>
+    </div>
+    <div id="popupForm" class="popup-overlay">
+        <div class="popup-content">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <form method="POST" action="{% url 'index' %}">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Your name" required />
+                <input type="tel" name="phone" placeholder="Your phone number" required />
+                <button type="submit" id="requestButton">Request Call</button>
+                <div class="contacticons">
+                    <a href="https://wa.me/919902636508" class="whatsappicon" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000" viewBox="0 0 16 16">
+                            <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:ssrreality9@gmail.com" class="gmailicon" target="_blank" rel="noopener noreferrer" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="38" fill="#000" viewBox="0 0 24 24">
+                            <path d="M22.5 6.502v10.996a1.5 1.5 0 0 1-1.5 1.502H3a1.5 1.5 0 0 1-1.5-1.502V6.502A1.5 1.5 0 0 1 3 5h18a1.5 1.5 0 0 1 1.5 1.502zm-1.5-.003H3a.5.5 0 0 0-.5.5v.634l9 5.859 9-5.859v-.634a.5.5 0 0 0-.5-.5zm-9 7.365L3 8.134v8.364a.5.5 0 0 0 .5.504h17a.5.5 0 0 0 .5-.504V8.134l-9 5.73z"/>
+                        </svg>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="about" id="about">
+        <h2 class="about-heading">About</h2>
+        <p class="about-content">Spread across 7 acres of prime land in Thanisandra, this premium residential enclave blends nature, luxury, and seamless connectivity. Featuring 10 elegant high-rise towers with over 550 meticulously crafted residences, it offers more than just a home—it’s a lifestyle upgrade. Designed for those who value both tranquility amidst greenery and the advantages of a high-growth corridor, this pre-launch opportunity in Bengaluru delivers lasting comfort, prestige, and investment value.</p>
+        <button class="visit" id="bookVisitBtn"><h4 class="brochure-heading">Book Site Visit</h4></button>
+    </div>
+    <div class="highlights" id="highlights">
+        <h2 class="highlights-heading">Highlights</h2>
+        <ul>
+        <li><p>Wide internal roads for smooth vehicle movement</p></li>
+        <li><p>Clubhouse with indoor games and a multipurpose hall</p></li>
+        <li><p>Underground electricity and water lines for a clean layout</p></li>
+        <li><p>Gated community with 24/7 security and CCTV surveillance</p></li>
+        <li><p>Children's play area and senior citizen zones</p></li>
+        </ul>
+    </div>
+    <div class="gallery-content" id="gallery">
+    <h2>Gallery</h2>
+    <div class="gallery-wrapper" style="display:flex; width: 100%; overflow: hidden; border-radius: 20px;">
+        <div class="gallery-items" style="display:flex; transition: transform 0.5s ease;">
+            <div class="gallery-item" onclick="openPopup()">
+                <img src="{% static 'godrejapp/images/img1.jpg' %}" class="gallery-image" />
+                <div class="overlay"></div>
+            </div>
+            <div class="gallery-item" onclick="openPopup()">
+                <img src="{% static 'godrejapp/images/img2.jpeg' %}" class="gallery-image" />
+                <div class="overlay"></div>
+            </div>
+            <div class="gallery-item" onclick="openPopup()">
+                <img src="{% static 'godrejapp/images/img3.png' %}" class="gallery-image" />
+                <div class="overlay"></div>
+            </div>
+            <div class="gallery-item" onclick="openPopup()">
+                <img src="{% static 'godrejapp/images/img4.webp' %}" class="gallery-image" />
+                <div class="overlay"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="location">
+        <h2 style="text-align: center;">Location</h2>
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-top: 5px;">
+            <a href="https://maps.google.com/?q=Godrej+Doddaballapur" target="_blank" rel="noopener noreferrer">
+            <img src="{% static 'godrejapp/images/loaction-image.png' %}" alt="Location Map" style="max-width: 1300px; height: 400px; width: 80vw; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);" />
+            </a>
+        </div>
+    </div>
+    <div class="footer">
+    <h1 class="disclaimer">Disclaimer</h1>
+        <small class="sub-title" style="font-size: 12px;">Authorized channel partner</small>
+        <div style="font-size:13px; color:#eee; margin-bottom:12px;">Agent rera: <span style="font-weight:bold; color:#ffee81;">PRM/KA/RERA/1251/310/AG/250826/006064</span></div>
+    <div class="disclaimer-content-box">
+        <div class="disclaimer-content-left">
+            The information provided on this website is intended exclusively for informational purposes and should not be construed as an offer of services. The pricing information presented on this website is subject to alteration without advance notification, and the assurance of property availability cannot be guaranteed. The images showcased on this website are for representational purposes only and may not accurately reflect the actual properties. We may share your data with Real Estate Regulatory Authority (RERA) registered Developers for further processing as necessary. Additionally, we may send updates and information to the mobile number or email address registered with us. All rights reserved. The content, design, and information on this website are protected by copyright and other intellectual property rights. Any unauthorized use or reproduction of the content may violate applicable laws. For accurate and up-to-date information regarding services, pricing, availability, and any other details, it is recommended to contact us directly through the provided contact information on this website. Thank you for visiting our website.
+        </div>
+        <div class="disclaimer-content-center">
+            please contact us directly at <a href="tel:9902636508" style="text-decoration: none;">9902636508</a>
+            <a href="https://wa.me/919902636508" class="whatsappicon1" style="padding-left: 5px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ffffff" viewBox="0 0 16 16">
+                    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // POPUP FORM LOGIC
+    var popup = document.getElementById("popupForm");
+    var closeBtn = document.getElementById("closePopup");
+    var brochureBtn = document.getElementById("downloadBrochureBtn");
+    var bookVisitBtn = document.getElementById("bookVisitBtn");
+    popup.style.display = "flex";
+
+
+    closeBtn.onclick = function() {
+        popup.style.display = "none";
+    };
+    if (brochureBtn) {
+        brochureBtn.onclick = function() {
+            popup.style.display = "flex";
+        };
+    }
+    if (bookVisitBtn) {
+        bookVisitBtn.onclick = function() {
+            popup.style.display = "flex";
+        };
+    }
+    window.onclick = function(event) {
+        if(event.target === popup) {
+            popup.style.display = "none";
+        }
+    };
+
+    // POPUP OPEN VIA GALLERY OR CONTACT
+    function openPopup() {
+        popup.style.display = "flex";
+    }
+    // Expose globally if needed for onclick attributes:
+    window.openPopup = openPopup;
+
+    var contactBtn = document.querySelector('.popup-contact');
+    if(contactBtn){
+        contactBtn.addEventListener("click", function(){
+            popup.style.display = "flex";
+        });
+    }
+
+    // HAMBURGER MENU LOGIC
+    var menuToggle = document.querySelector('.navbar-toggle');
+    var menuList = document.querySelector('.navbar-list');
+    if(menuToggle && menuList){
+        menuToggle.addEventListener('click', function() {
+            menuList.classList.toggle('open');
+        });
+    }
+
+    // GALLERY AUTO SLIDE
+    const galleryItems = document.querySelector('.gallery-items');
+    const images = document.querySelectorAll('.gallery-item');
+    let counter = 0;
+    function autoSlide() {
+        counter = (counter + 1) % images.length;
+        galleryItems.style.transform = `translateX(${-counter * 100}%)`;
+    }
+    setInterval(autoSlide, 3000);
+});
+</script>
+</html>
