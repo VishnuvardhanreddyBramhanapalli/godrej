@@ -341,6 +341,34 @@
             font-weight: bold;
             text-decoration: none;
         }
+        @media (min-width: 2560px) and (max-width: 2560px) and (min-height: 1440px) and (max-height: 1440px) {
+    /* Place your custom styles here */
+            .gallery-content {
+                /* Example: increase width or adjust margins */
+                width: 90vw;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-content {
+                font-size: 24px;
+            }
+            .amenity{
+                margin-top: 30px;
+            }
+            .amenities {
+                grid-template-columns: repeat(3, 1fr); /* More columns for big screens */
+                margin-left: 600px;
+                width: 100%;
+            }
+            .about{
+                margin-top: 30px;
+            }
+            .about-content{
+                width: 90vw;
+            }
+            /* Add any other style adjustments you need */
+        }
+
         @media (max-width: 400px){
             .amenities{
                 margin-left: 120px;
